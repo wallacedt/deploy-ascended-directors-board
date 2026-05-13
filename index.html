@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ascended Director's Board</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Ascended Action Scenes</p>
+          <h1>Director's Board</h1>
+        </div>
+        <div class="combat-state" aria-label="Combat state">
+          <span>State</span>
+          <select id="combatStateSelect">
+            <option value="setup">Setup</option>
+            <option value="active">Active Sequenced Phase</option>
+            <option value="resolution">Resolution</option>
+            <option value="new-phase">New Phase</option>
+          </select>
+        </div>
+        <button class="panel-toggle" id="panelToggle" type="button" aria-expanded="true" aria-controls="controlPanel">Controls</button>
+      </header>
+
+      <main class="workspace">
+        <section class="board-column" aria-label="Director board">
+          <div class="phase-strip" aria-label="Sequenced Phase controls">
+            <div class="current-sr">
+              <span>Current SR</span>
+              <strong id="currentSrDisplay">20</strong>
+            </div>
+            <label>
+              Start
+              <input id="phaseStartInput" type="number" min="-10" max="20" value="20">
+            </label>
+            <button id="setStartBtn" type="button">Set Starting SR</button>
+            <button id="stepDownBtn" type="button">Step Down</button>
+            <button id="stepUpBtn" type="button">Step Up</button>
+            <button id="newPhaseBtn" type="button">New Sequenced Phase</button>
+            <button id="clearCompletedBtn" class="danger-ghost" type="button">Clear Current SR</button>
+          </div>
+
+          <div class="board-frame">
+            <div class="board-shell" id="boardShell">
+              <img class="board-image" src="assets/Ascended Director Board v1.png" alt="Ascended Director's Board sequence rating background">
+              <div class="sr-layer" id="srLayer" aria-hidden="true"></div>
+              <div class="token-layer" id="tokenLayer" aria-label="Draggable timing tokens"></div>
+            </div>
+          </div>
+
+          <div class="staging-area" id="stagingArea" aria-label="Staging area">
+            <div>
+              <strong>Uncommitted Actions</strong>
+              <span>Tokens without an SR wait here until placed.</span>
+            </div>
+          </div>
+        </section>
+
+        <aside class="control-panel" id="controlPanel" aria-label="Token controls">
+          <section class="panel-section">
+            <h2>Add Token</h2>
+            <form id="tokenForm">
+              <label>
+                Type
+                <select id="tokenType">
+                  <option value="character">Character / Action Rating</option>
+                  <option value="weapon">Weapon</option>
+                  <option value="spell">Spell</option>
+                  <option value="psionic">Psionic</option>
+                  <option value="divine">Divine</option>
+                  <option value="skill">Skill</option>
+                  <option value="misc">Miscellaneous</option>
+                </select>
+              </label>
+              <label>
+                Label
+                <input id="tokenLabel" type="text" maxlength="28" placeholder="Asha, Longsword, Ward...">
+              </label>
+              <label>
+                Owner
+                <input id="tokenOwner" type="text" maxlength="28" placeholder="Player or GM">
+              </label>
+              <label>
+                Starting SR
+                <select id="tokenSr"></select>
+              </label>
+              <label>
+                Color
+                <select id="tokenColor">
+                  <option value="gold">Gold</option>
+                  <option value="crimson">Crimson</option>
+                  <option value="teal">Teal</option>
+                  <option value="violet">Violet</option>
+                  <option value="ivory">Ivory</option>
+                  <option value="iron">Iron</option>
+                </select>
+              </label>
+              <label>
+                Notes
+                <textarea id="tokenNotes" rows="3" placeholder="Readies at SR 8, casting, reload, condition..."></textarea>
+              </label>
+              <button class="primary" type="submit">Add Token</button>
+            </form>
+          </section>
+
+          <section class="panel-section">
+            <h2>Board Data</h2>
+            <div class="button-grid">
+              <button id="saveBtn" type="button">Save Board</button>
+              <button id="loadBtn" type="button">Load Board</button>
+              <button id="exportBtn" type="button">Export JSON</button>
+              <button id="importBtn" type="button">Import JSON</button>
+              <button id="clearBoardBtn" class="danger" type="button">Clear Board</button>
+            </div>
+            <input id="importFile" type="file" accept="application/json,.json" hidden>
+          </section>
+
+          <section class="panel-section">
+            <h2>Token Legend</h2>
+            <div class="legend" id="legend"></div>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <dialog class="token-dialog" id="tokenDialog">
+      <form method="dialog" id="editForm">
+        <div class="dialog-head">
+          <h2>Edit Token</h2>
+          <button id="closeDialogBtn" type="button" aria-label="Close">x</button>
+        </div>
+        <input id="editTokenId" type="hidden">
+        <label>
+          Type
+          <select id="editType"></select>
+        </label>
+        <label>
+          Label
+          <input id="editLabel" type="text" maxlength="28">
+        </label>
+        <label>
+          Owner
+          <input id="editOwner" type="text" maxlength="28">
+        </label>
+        <label>
+          Current / Target SR
+          <select id="editSr"></select>
+        </label>
+        <label>
+          Color
+          <select id="editColor"></select>
+        </label>
+        <label>
+          Notes
+          <textarea id="editNotes" rows="4"></textarea>
+        </label>
+        <div class="dialog-actions">
+          <button id="deleteTokenBtn" class="danger" type="button">Delete</button>
+          <button id="duplicateTokenBtn" type="button">Duplicate</button>
+          <button class="primary" value="default" type="submit">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
