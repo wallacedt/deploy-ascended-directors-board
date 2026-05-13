@@ -55,8 +55,6 @@ Test while logged out or in an incognito browser, because embedded content may n
 
 ### Iframe Snippet
 
-Replace `PASTE_HOSTED_DIRECTORS_BOARD_URL_HERE` with the published GitHub Pages URL.
-
 ```html
 <section class="ascended-directors-board-gate">
   <div class="ascended-directors-board-divider"></div>
@@ -69,22 +67,91 @@ Replace `PASTE_HOSTED_DIRECTORS_BOARD_URL_HERE` with the published GitHub Pages 
 
   <div class="ascended-directors-board-frame-wrap">
     <iframe
-      src="PASTE_HOSTED_DIRECTORS_BOARD_URL_HERE"
+      src="https://wallacedt.github.io/deploy-ascended-directors-board/"
       title="Ascended Director's Board"
       loading="lazy"
       class="ascended-directors-board-frame">
     </iframe>
   </div>
 </section>
+
+<style>
+  .ascended-directors-board-gate {
+    margin: 32px auto;
+    max-width: 1700px;
+  }
+
+  .ascended-directors-board-divider {
+    border-top: 1px solid rgba(185, 146, 74, 0.35);
+    margin: 28px auto 24px;
+    width: 92%;
+  }
+
+  .ascended-directors-board-intro {
+    text-align: center;
+    margin: 0 auto 18px;
+    max-width: 820px;
+    color: #ead8b8;
+  }
+
+  .ascended-directors-board-intro h2 {
+    margin: 0 0 8px;
+    color: #d7b46a;
+    font-size: 1.8rem;
+    letter-spacing: 0.04em;
+  }
+
+  .ascended-directors-board-intro p {
+    margin: 6px 0;
+    font-size: 1rem;
+  }
+
+  .ascended-directors-board-note {
+    opacity: 0.75;
+    font-style: italic;
+  }
+
+  .ascended-directors-board-frame-wrap {
+    background:
+      radial-gradient(circle at top, rgba(185, 146, 74, 0.13), transparent 42%),
+      linear-gradient(180deg, rgba(20, 15, 10, 0.96), rgba(8, 6, 4, 0.98));
+    border: 1px solid rgba(185, 146, 74, 0.35);
+    border-radius: 18px;
+    padding: 14px;
+    box-shadow:
+      0 18px 48px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 245, 221, 0.06);
+    overflow: hidden;
+  }
+
+  .ascended-directors-board-frame {
+    display: block;
+    width: 100%;
+    min-height: 1150px;
+    border: 0;
+    border-radius: 12px;
+    background: #120d09;
+  }
+
+  @media (max-width: 900px) {
+    .ascended-directors-board-frame-wrap {
+      padding: 8px;
+      border-radius: 12px;
+    }
+
+    .ascended-directors-board-frame {
+      min-height: 1450px;
+      border-radius: 8px;
+    }
+  }
+</style>
 ```
 
 ### Button Snippet
 
-Replace `PASTE_HOSTED_DIRECTORS_BOARD_URL_HERE` with the published GitHub Pages URL.
-
 ```html
 <a
-  href="PASTE_HOSTED_DIRECTORS_BOARD_URL_HERE"
+  href="https://wallacedt.github.io/deploy-ascended-directors-board/"
   target="_blank"
   rel="noopener"
   style="display:inline-block;padding:12px 18px;border-radius:12px;background:#b9924a;color:#1a140c;text-decoration:none;font-weight:bold;">
